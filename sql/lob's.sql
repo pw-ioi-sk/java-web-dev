@@ -17,3 +17,5 @@ delete from product_image where id >= 1 ;
 USE company;
 SELECT * FROM article;
 delete from article where id >= 1;
+
+select * from classroom;

@@ -28,4 +28,32 @@ SELECT COUNT(*) FROM product;
 
 call showAll();
 
-delete from product where id > 12;
+delete from product_image where id > 4;
+
+select * from product_image;
+
+drop table student;
+
+select * from student;
+
+INSERT INTO student (name, branch) VALUES
+('Rahul', 'CSE'),
+('Amit', 'CSE'),
+('Priya', 'IT'),
+('Sneha', 'IT'),
+('Rohan', 'ECE'),
+('Ananya', 'ECE'),
+('Vikas', 'CSE-AI'),
+('Neha', 'CSE-AI'),
+('Arjun', 'ME'),
+('Kavya', 'CSE'),
+('Ravi', 'IT'),
+('Pooja', 'ECE'),
+('Karan', 'CSE-AI'),
+('Simran', 'CSE'),
+('Aditya', 'ME'),
+('Isha', 'IT'),
+('Manish', 'ECE'),
+('Nisha', 'CSE-AI'),
+('Varun', 'CSE'),
+('Shreya', 'IT');

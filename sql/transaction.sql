@@ -13,3 +13,4 @@ INSERT INTO account VALUES
 (2, 'Bob', 3000);
 
 select * from account;
+
