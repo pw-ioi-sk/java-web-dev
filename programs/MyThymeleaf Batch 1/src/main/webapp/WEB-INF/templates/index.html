@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+    <h1>Variable Expression</h1>
+    <h2 th:text="${message}">Default Message</h2>
+    <hr />
+    <div th:object="${user}">
+        <p th:text="*{id}"></p>
+        <p th:text="*{name}"></p>
+        <p th:text="*{address}"></p>
+        <p th:text="*{phone}"></p>
+    </div>
+    <hr />
+    <table border="1">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </thead>
+        <tbody>
+            <tr th:object="${user}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{address}"></td>
+                <td th:text="*{phone}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <table border="1">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </thead>
+        <tbody th:each="user : ${users}">
+            <tr th:switch="${'Noida'}">
+                <div th:case="${user.address}">
+                    <td th:text="${user.id}">Id</td>
+                    <td th:text="${user.name}">Name</td>
+                    <td th:text="${user.address}">Address</td>
+                    <td th:text="${user.phone}">Phone</td>
+                </div>
+                <div th:case="*">
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Address</td>
+                    <td>Phone</td>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <a th:href="@{/hello/{name}/detail(name=${users[1].name})}">Link</a>
+</body>
+</html>

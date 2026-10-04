@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Thymeleaf Home</title>
+    </head>
+    <body>
+        <h2>Variable Expressions: ${...} and th:text</h2>
+        <p th:text="${message}">Default Message</p>
+
+        <hr />
+
+        <h2>th:each</h2>
+        <div th:each="user : ${users}">
+            <p th:text="${user.id}">Id</p>
+            <p th:text="${user.name}">Name</p>
+            <p th:text="${user.address}">Address</p>
+            <p th:text="${user.phone}">Phone</p>
+        </div>
+
+        <hr />
+
+        <h2>th:if</h2>
+        <div th:each="user : ${users}" th:if="${user.address == 'Pune'}">
+            <p th:text="${user.id}">Id</p>
+            <p th:text="${user.name}">Name</p>
+            <p th:text="${user.address}">Address</p>
+            <p th:text="${user.phone}">Phone</p>
+        </div>
+
+        <hr />
+
+        <h2>th:unless</h2>
+        <div th:each="user : ${users}" th:unless="${user.address == 'Pune'}">
+            <p th:text="${user.id}">Id</p>
+            <p th:text="${user.name}">Name</p>
+            <p th:text="${user.address}">Address</p>
+            <p th:text="${user.phone}">Phone</p>
+        </div>
+
+        <hr />
+
+        <h2>th:switch</h2>
+        <div th:switch="'Pune'" th:each="user : ${users}">
+            <div th:case="${user.address}">
+                <p th:text="${user.id}">Id</p>
+                <p th:text="${user.name}">Name</p>
+                <p th:text="${user.address}">Address</p>
+                <p th:text="${user.phone}">Phone</p>
+            </div>
+        </div>
+
+        <hr />
+
+        <h2>th:each</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">Id</td>
+                <td th:text="${user.name}">Name</td>
+                <td th:text="${user.address}">Address</td>
+                <td th:text="${user.phone}">Phone</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <h2>th:if</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}" th:if="${user.address == 'Pune'}">
+                <td th:text="${user.id}">Id</td>
+                <td th:text="${user.name}">Name</td>
+                <td th:text="${user.address}">Address</td>
+                <td th:text="${user.phone}">Phone</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <h2>th:unless</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}" th:unless="${user.address == 'Pune'}">
+                <td th:text="${user.id}">Id</td>
+                <td th:text="${user.name}">Name</td>
+                <td th:text="${user.address}">Address</td>
+                <td th:text="${user.phone}">Phone</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <h2>th:switch</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:switch="${user.address}" th:each="user : ${users}">
+                    <div th:case="'Pune'">
+                        <td th:text="${user.id}">Id</td>
+                        <td th:text="${user.name}">Name</td>
+                        <td th:text="${user.address}">Address</td>
+                        <td th:text="${user.phone}">Phone</td>
+                    </div>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>Link URL Expressions: @{...}</h2>
+        <a href="/about">Link Without Thymeleaf</a>
+        <br>
+        <a th:href="@{/about}">Link With Thymeleaf</a>
+
+        <hr>
+
+        <h2>th:object</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:switch="${user.address}" th:each="user : ${users}" th:object="${user}">
+                <div th:case="'Pune'">
+                    <td th:text="*{id}">Id</td>
+                    <td th:text="*{name}">Name</td>
+                    <td th:text="*{address}">Address</td>
+                    <td th:text="*{phone}">Phone</td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+
+        <hr />
+
+        <h2>th:action and th:value</h2>
+        <form th:action="@{/hello}" method="post">
+            Name: <input type="text" name="name" th:value="${user.name}">
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <hr />
+
+        <h2>th:action and th:value with hidden field</h2>
+        <form th:action="@{/hello}" method="post">
+            Name: <input type="hidden" name="name" th:value="${user.name}">
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <hr />
+
+        <h2>th:action and th:value with th:object</h2>
+        <form th:action="@{/hello}" th:object="${user}" method="post">
+            Id: <input type="text" name="id" th:value="*{id}">
+            <br><br>
+            Name: <input type="text" name="name" th:value="*{name}">
+            <br><br>
+            Address: <input type="text" name="name" th:value="*{address}">
+            <br><br>
+            Phone: <input type="text" name="name" th:value="*{phone}">
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <hr />
+
+        <h2>th:action and th:value with th:object and hidden field</h2>
+        <form th:action="@{/hello}" th:object="${user}" method="post">
+            Id: <input type="hidden" name="id" th:value="*{id}">
+            <br><br>
+            Name: <input type="hidden" name="name" th:value="*{name}">
+            <br><br>
+            Address: <input type="hidden" name="name" th:value="*{address}">
+            <br><br>
+            Phone: <input type="hidden" name="name" th:value="*{phone}">
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <hr />
+    </body>
+</html>

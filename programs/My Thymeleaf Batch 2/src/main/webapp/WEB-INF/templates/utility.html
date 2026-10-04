@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utility Objects</title>
+</head>
+<body>
+    <div th:insert="~{fragments/header :: header}"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
+    <hr />
+    <h2>String Utility Object</h2>
+    <p>Default name stored in WebContext</p>
+    <p th:text="${name}"></p>
+    <div>
+        <p th:text="${#strings.toUpperCase(name)}"></p>
+        <p th:text="${#strings.toLowerCase(name)}"></p>
+        <p th:text="${#strings.length(name)}"></p>
+        <p th:text="${#strings.contains(name, 'ap')}"></p>
+        <p th:text="${#strings.contains(name, 'wp')}"></p>
+    </div>
+    <div>
+        <p th:text="${#strings.toUpperCase(names)}"></p>
+        <p th:text="${#strings.toLowerCase(names)}"></p>
+        <p th:text="${#strings.length(names)}"></p>
+    </div>
+    <div th:each="name : ${listnames}">
+        <p th:text="${name}"></p>
+    </div>
+    <div>
+        <p th:text="${#lists.size(listnames)}"></p>
+        <p th:text="${#lists.isEmpty(listnames)}"></p>
+        <p th:text="${#lists.contains(listnames, 'swap')}"></p>
+    </div>
+    <hr />
+    <hr />
+    <div>
+        <p th:text="${num}"></p>
+        <p th:text="${#numbers.formatInteger(num, 8)}"></p>
+        <p th:text="${#numbers.formatInteger(num, 3)}"></p>
+        <p th:text="${#numbers.formatInteger(num, 10)}"></p>
+        <p th:text="${#numbers.formatInteger(num, 10, 'POINT')}"></p>
+        <p th:text="${#numbers.formatInteger(num, 10, 'COMMA')}"></p>
+        <hr />
+        <p th:text="${#numbers.formatDecimal(salary, 10, 2)}"></p>
+        <p th:text="${#numbers.formatDecimal(salary, 10, 'COMMA', 5, 'POINT')}"></p>
+    </div>
+    <hr />
+    <div>
+        <p th:text="${#temporals.format(currentTime, 'hh:mm a')}"></p>
+        <p th:text="${#temporals.format(currentDate, 'MMMM dd yyyy qqqq')}"></p>
+        <p th:text="${#temporals.format(currentDateTime, 'dd-MM-yyyy HH:mm:ss')}"></p>
+    </div>
+    <hr />
+    <div th:insert="~{fragments/footer :: footer}"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

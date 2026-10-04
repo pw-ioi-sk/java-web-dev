@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf Attributes Demo</title>
+</head>
+<body>
+    <h1>Variable Expression</h1>
+    <h2 th:text="${msg.name}">name</h2>
+    <h2 th:text="${msg.address}">address</h2>
+    <table border=1>
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}" th:object="${user}" th:if="${user.id == 1}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{address}"></td>
+                <td th:text="*{phone}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${users[0].id == 1}" th:object="${users[0]}">
+        <p th:text="*{address}">Default</p>
+        <p th:text="#{user.name}">Default</p>
+    </div>
+
+    <table border=1>
+        <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}" th:object="${user}" th:unless="${user.address == 'noida'}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{address}"></td>
+            <td th:text="*{phone}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr />
+    <table border=1>
+        <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        </thead>
+        <tbody >
+        <tr th:switch="'noida'" th:case="${users[0].address}" th:object="${users[0]}">
+            <div>
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{address}"></td>
+                <td th:text="*{phone}"></td>
+            </div>
+        </tr>
+        <tr th:case="*" th:object="${users[0]}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{address}"></td>
+            <td th:text="*{phone}"></td>
+        </tr>
+        </tbody>
+</body>
+</html>

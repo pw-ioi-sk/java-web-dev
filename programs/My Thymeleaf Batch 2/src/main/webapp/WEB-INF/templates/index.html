@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+    <h1>Variable Expression '${}' (th:text)</h1>
+    <h1 th:text="${message}">Default Message</h1>
+    <hr/>
+    <h1>th:each example</h1>
+    <table border="1">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}" th:object="${user}" th:unless="${user.id == 1}">
+                <td th:text="*{id}"></td>
+                <td th:text="*{name}"></td>
+                <td th:text="*{address}"></td>
+                <td th:text="*{phone}"></td>
+            </tr>
+        </tbody>
+    </table>
+<hr />
+
+<div th:switch="${user.id}">
+    <div th:case="${user.id}">
+        <p th:text="${user.id}"></p>
+        <p th:text="${user.name}"></p>
+        <p th:text="${user.address}"></p>
+        <p th:text="${user.phone}"></p>
+    </div>
+    <div th:case="*">
+        <p>Id</p>
+        <p>name</p>
+        <p>address</p>
+        <p>phone</p>
+    </div>
+</div>
+<hr />
+
+<table border="1">
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+    </thead>
+    <tbody th:each="user : ${users}" >
+        <tr th:switch="'noida'">
+            <div th:case="${user.address}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.address}"></td>
+                <td th:text="${user.phone}"></td>
+            </div>
+            <div th:case="*">
+                <td>Id</td>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Phone</td>
+            </div>
+        </tr>
+    </tbody>
+</table>
+<hr />
+    <a href="/hello">Link without thymeleaf</a>
+    <br><br>
+    <a th:href="@{/hello}">Link with thymeleaf</a>
+<hr />
+<form th:action="@{/add}">
+    Num1: <input type="number" name="num1" th:value="${users[0].id}">
+    <br><br>
+    Num2: <input type="number" name="num2" th:value="${users[1].id}">
+    <br><br>
+    <button type="submit">Add</button>
+</form>
+<hr />
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utility Object</title>
+</head>
+<body>
+    <h2>String Object Methods</h2>
+    <div>
+        <p th:text="${name}"></p>
+        <p th:text="${#strings.toUpperCase(name)}"></p>
+        <p th:text="${#strings.toLowerCase(name)}"></p>
+        <p th:text="${#strings.length(name)}"></p>
+        <p th:text="${#strings.contains(name, 'ap')}"></p>
+        <p th:text="${#strings.contains(name, 'wp')}"></p>
+    </div>
+    <hr />
+    <div>
+        <p th:text="${#strings.toUpperCase(names)}"></p>
+        <p th:text="${#strings.toLowerCase(names)}"></p>
+        <p th:text="${#strings.length(names)}"></p>
+    </div>
+    <hr />
+    <div>
+        <p th:text="${#lists.size(listnames)}">
+        <p th:text="${#lists.isEmpty(listnames)}">
+        <p th:text="${#lists.contains(listnames, 'swap')}">
+    </div>
+    <hr />
+    <div>
+        (4)(4)(2)(4)(3)
+        <p th:text="${#numbers.formatInteger(num, 3, 'COMMA')}"></p>
+        (4)(4)(2)(4)(3)
+        <p th:text="${#numbers.formatInteger(num, 5, 'COMMA')}"></p>
+        (0)(4)(4)(2)(4)(3)
+        <p th:text="${#numbers.formatInteger(num, 6, 'COMMA')}"></p>
+        (0)(0)(0)(4)(4)(2)(4)(3)
+        <p th:text="${#numbers.formatInteger(num, 8, 'COMMA')}"></p>
+    </div>
+    <hr />
+    <div>
+        70000000.3453
+        <p th:if="${#numbers.formatDecimal(decimal, 3, 'COMMA', 2, 'COMMA')}"></p>
+        70000000.3453
+        <p th:text="${#numbers.formatDecimal(decimal, 8, 'COMMA', 4, 'WHITESPACE')}"></p>
+        70000000.3453
+        <p th:text="${#numbers.formatDecimal(decimal, 10, 'COMMA', 8, 'POINT')}"></p>
+    </div>
+    <hr />
+    <div>
+        <p th:text="${#temporals.format(currentTime, 'HH:mm:ss hh a')}"></p>
+        <p th:text="${#temporals.format(currentDate, 'MMMM yyyy dd qqqq')}"></p>
+        <p th:text="${#temporals.format(currentDateTime, 'dd-MM-yyyy HH:mm:ss')}"></p>
+    </div>
+</body>
+</html>
